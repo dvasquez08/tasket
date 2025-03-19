@@ -9,3 +9,12 @@
   --color-blue-accent: #0084d4;
   --color-blue-accent-hover: #009fff;
 }
+
+@layer components {
+  .icon {
+    @apply text-default-text text-xl; 
+  }
+  .btn {
+    @apply hover:no-underline bg-blue-accent hover:bg-blue-accent-hover tracking-wider w-full text-center text-nav font-bold cursor-pointer uppercase px-4 py-2 rounded-md transition-colors block;
+  }
+}
