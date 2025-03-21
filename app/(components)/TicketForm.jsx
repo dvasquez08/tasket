@@ -3,7 +3,8 @@
 import { useState } from "react";
 import { useRouter } from "next/navigation";
 
-const TicketForm = () => {
+const TicketForm = ({ ticket }) => {
+  const EDITMODE = Ticket._id === "new" ? false : true;
   const router = useRouter();
 
   const handleChange = (e) => {
@@ -41,6 +42,15 @@ const TicketForm = () => {
     category: "Hardware Problem",
   };
 
+  if (EDITMODE) {
+    startingTicketData["title"] = ticket.title;
+    startingTicketData["description"] = ticket.description;
+    startingTicketData["priority"] = ticket.priority;
+    startingTicketData["progress"] = ticket.progress;
+    startingTicketData["status"] = ticket.status;
+    startingTicketData["category"] = ticket.category;
+  }
+
   const [formData, setFormData] = useState(startingTicketData);
   return (
     <div className="flex justify-center">
@@ -77,8 +87,8 @@ const TicketForm = () => {
           onChange={handleChange}
         >
           <option value="Hardware Problem">Hardware Problem</option>
-          <option value="Hardware Problem">Software Problem</option>
-          <option value="Hardware Problem">Project</option>
+          <option value="Software Problem">Software Problem</option>
+          <option value="Project">Project</option>
         </select>
 
         <label>Priority</label>
